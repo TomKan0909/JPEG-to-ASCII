@@ -1,4 +1,3 @@
 # JPEG-to-ASCII
 
-aaaaaa
-
+WIP
