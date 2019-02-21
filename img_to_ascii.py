@@ -1,4 +1,3 @@
-
 import numpy as np
 import math 
 from PIL import Image
@@ -45,9 +44,9 @@ def convert(filename, cols, scale):
 			if i == cols - 1:
 				x2 = W
 
-			im = image.crop(x1, y1, x2, y2)
+			im = image.crop((x1, y1, x2, y2))
 			average = getAverageL(im)
-			gsval = gscale1[int((avg*69)/255)]
+			gsval = gscale1[int((average*69)/255)]
 			aimg[j]+= gsval
 
 	return aimg
@@ -55,36 +54,9 @@ def convert(filename, cols, scale):
 
 
 def main():
-    # create parser
-    descStr = "This program converts an image into ASCII art."
-    parser = argparse.ArgumentParser(description=descStr)
-    # add expected arguments
-    parser.add_argument('--file', dest='imgFile', required=True)
-    parser.add_argument('--scale', dest='scale', required=False)
-    parser.add_argument('--out', dest='outFile', required=False)
-    parser.add_argument('--cols', dest='cols', required=False)
-
-    # parse args
-    args = parser.parse_args()
-  
-    imgFile = args.imgFile
-    # set output file
-    outFile = 'out.txt'
-    if args.outFile:
-        outFile = args.outFile
-    # set scale default as 0.43 which suits a Courier font
-    scale = 0.43
-    if args.scale:
-        scale = float(args.scale)
-    # set cols
-    cols = 80
-    if args.cols:
-        cols = int(args.cols)
-
-    print('generating ASCII art...')
     # convert image to ascii txt
-    aimg = covertImageToAscii(imgFile, cols, scale)
-
+    aimg = convert("Shrek_fierce.jpg", 80, 0.43)
+    outFile = 'out.txt'
     # open file
     f = open(outFile, 'w')
     # write to file
