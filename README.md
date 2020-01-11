@@ -1,3 +1,0 @@
-# JPEG-to-ASCII
-
-WIP
